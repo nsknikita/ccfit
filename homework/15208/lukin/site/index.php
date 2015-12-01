@@ -1,6 +1,6 @@
 <?php
 	file_put_contents("include/.count", $count = file_get_contents("include/.count") + 1);
-	echo "÷Ù $count ÐÏÓÅÔÉÔÅÌØ<BR>";
+	echo "Вы $count посетитель<BR>";
 	$inip = $_SERVER['REMOTE_ADDR'];
 	$ip =  file("include/.iplist");
 	$cip = 0;
@@ -10,16 +10,15 @@
 	}
 	if ($cip > 0)
 	{
-		echo "÷ÓÅÇÏ ÕÎÉËÁÌØÎÙÈ ÐÏÓÅÔÉÔÅÌÅÊ: $i<BR>÷Ù ÂÙÌÉ $cip ÕÎÉËÁÌØÎÙÍ ÐÏÓÅÔÉÔÅÌÅÍ<BR>";
-		$cip--;
-		echo "÷ÁÛ ip: $ip[$cip]<BR>";
+		echo "Кол-во уникальных посетителей: $i<BR>Вы были $cip уникальным посетителем<BR>";
 	}
 	else
 	{
 		$i++;
-		echo "÷Ù $i ÕÎÉËÁÌØÎÙÊ ÐÏÓÅÔÉÔÅÌØ<BR>÷ÁÛ ip: $inip<BR>";
+		echo "Вы $i уникальный посетитель<BR>";
 		$ipfile = fopen("include/.iplist", 'a');
 		fwrite($ipfile, "$inip\n");
 		fclose($ipfile);
 	}
+	echo "Ваш ip: $inip<BR>";
 ?>
