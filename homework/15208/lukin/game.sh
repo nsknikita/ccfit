@@ -2,27 +2,27 @@
 
 TMP=`expr $RANDOM % 101`
 
-echo "угадайте число от 0 до 100"
+echo "пёпЁп╟п╢п╟п╧ я┤п╦я│п╩п╬ п╬я┌ 0 п╢п╬ 100"
 
 for count in 7 6 5 4 3 2 1
 do
-	echo "кол-во оставшихся попыток: $count"
+	echo "п п╬п╩-п╡п╬ п╬я│я┌п╟п╡я┬п╦я┘я│я▐ п©п╬п©я▀я┌п╬п╨: $count"
 	read try
 	if ((try != TMP))
 	then
 		if ((try < TMP))
 		then
-			echo "Больше"
+			echo "п▒п╬п╩я▄я┬п╣"
 		else
-			echo "Меньше"
+			echo "п°п╣п╫я▄я┬п╣"
 		fi
 	else
-		echo -e "Вы угадали!\n"
+		echo -e "п╒я▀ п©п╬п╠п╣п╢п╦п╩!\n"
 		exit 0
 	fi
 done
 
-echo -e "Вы не справились\nчисло $TMP"
+echo -e "п╒я▀ п©я─п╬п╦пЁя─п╟п╩.\nп╞ п╥п╟пЁп╟п╢п╟п╩ $TMP"
 
 exit 0
 
