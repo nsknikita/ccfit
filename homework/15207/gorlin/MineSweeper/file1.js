@@ -91,53 +91,58 @@ var MyMineSweeper = {
     },
 
     generateField: function() {
-        var self = this;
-        var table = document.createElement('table');
+        if (this.bombs - this.H * this.W > 0)
+            this.gameStats.innerHTML = 'Некорректное соотношение числа бомб и размеров поля. Пожалуйста, введите другие значения';
+        else {
+            var self = this;
+            var table = document.createElement('table');
 
-        for (var i = 0; i < this.H; i++) {
-            var r = table.insertRow(i);
+            for (var i = 0; i < this.H; i++) {
+                var r = table.insertRow(i);
 
-            for (var j = 0; j < this.W; j++) {
-                var c = r.insertCell(j);
-                c.num = 0;
-                c.index = [i, j];
+                for (var j = 0; j < this.W; j++) {
+                    var c = r.insertCell(j);
+                    c.num = 0;
+                    c.index = [i, j];
 
-                c.clickHandler = function() {
-                    self.showInfo(this);
+                    c.clickHandler = function () {
+                        self.showInfo(this);
+                    }
+
+                    Event.add(c, 'click', c.clickHandler);
+
+                    c.contextmenuHandler = function () {
+                        self.installFlag(this);
+                    }
+
+                    Event.add(c, 'contextmenu', c.contextmenuHandler);
                 }
-
-                Event.add(c, 'click', c.clickHandler);
-
-                c.contextmenuHandler = function() {
-                    self.installFlag(this);
-                }
-
-                Event.add(c, 'contextmenu', c.contextmenuHandler);
             }
+            this.OC = 0;
+            this.Flags = 0;
+            do {
+                var hNum = this.rand(0, this.H - 1);
+                var wNum = this.rand(0, this.W - 1);
+
+                if (!table.rows[hNum].cells[wNum].bomb) {
+                    table.rows[hNum].cells[wNum].num = null;
+                    table.rows[hNum].cells[wNum].bomb = true;
+                    this.placedBombs--;
+                }
+            } while (this.placedBombs > 0);
+
+            for (var i = 0, len = table.rows.length; i < len; i++) {
+                for (var j = 0, len2 = table.rows[i].cells.length; j < len2; j++) {
+                    if (table.rows[i].cells[j].bomb) {
+                        this.placeNumbers(table, j, i);
+                    }
+                }
+            }
+
+            return table;
         }
-        this.OC = 0;
-        this.Flags = 0;
-        do {
-            var hNum = this.rand(0, this.H - 1);
-            var wNum = this.rand(0, this.W - 1);
-
-            if (!table.rows[hNum].cells[wNum].bomb) {
-                table.rows[hNum].cells[wNum].num = null;
-                table.rows[hNum].cells[wNum].bomb = true;
-                this.placedBombs--;
-            }
-        } while (this.placedBombs > 0);
-
-        for (var i = 0, len = table.rows.length; i < len; i++) {
-            for (var j = 0, len2 = table.rows[i].cells.length; j < len2; j++) {
-                if (table.rows[i].cells[j].bomb) {
-                    this.placeNumbers(table, j, i);
-                }
-            }
-        }
-
-        return table;
     },
+            
 
     placeNumbers: function(t, x, y) {
         if (x > 0) {
