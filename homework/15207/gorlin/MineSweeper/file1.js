@@ -91,7 +91,7 @@ var MyMineSweeper = {
     },
 
     generateField: function() {
-        if (this.bombs - this.H * this.W > 0)
+        if (this.bombs - (this.H * this.W) > 0)
             this.gameStats.innerHTML = 'Некорректное соотношение числа бомб и размеров поля. Пожалуйста, введите другие значения';
         else {
             var self = this;
