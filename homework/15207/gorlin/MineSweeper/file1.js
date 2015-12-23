@@ -10,7 +10,7 @@ var MyMineSweeper = {
         this.generateGUI();
     },
 
-    generateGUI: function() {
+generateGUI: function() {
         if (!this.game) {
             this.game = this.writeMainContainer();
 
@@ -42,15 +42,32 @@ var MyMineSweeper = {
 
             this.BInput = document.createElement('input');
             this.BInput.type = 'text';
-
             this.gameMenu.appendChild(this.BInput);
+
             this.Init = document.createElement('input');
             this.Init.type = 'button';
             this.Init.value = 'Старт';
             this.Init.className = 'game-start-button';
 
-            this.gameMenu.appendChild(this.BInput);
+            this.Beginner = document.createElement('input');
+            this.Beginner.type = 'button';
+            this.Beginner.value = 'Уровень: Новичек';
+            this.Beginner.className = 'game-start-button';
+
+            this.Medium = document.createElement('input');
+            this.Medium.type = 'button';
+            this.Medium.value = 'Уровень: Средний';
+            this.Medium.className = 'game-start-button';
+
+            this.Expert = document.createElement('input');
+            this.Expert.type = 'button';
+            this.Expert.value = 'Уровень: Эксперт';
+            this.Expert.className = 'game-start-button';
+
             this.gameMenu.appendChild(this.Init);
+            this.gameMenu.appendChild(this.Beginner);
+            this.gameMenu.appendChild(this.Medium);
+            this.gameMenu.appendChild(this.Expert);
 
             this.gameStats = this.gameCont.rows[0].insertCell(1);
 
@@ -88,6 +105,24 @@ var MyMineSweeper = {
         }
 
         Event.add(this.Init, 'click', buttonClick);
+
+        var bclick = function() {
+            self.init({W: 9, H: 9, bombs: 10});
+        }
+
+        Event.add(this.Beginner, 'click', bclick);
+
+        var mclick = function() {
+            self.init({W: 16, H: 16, bombs: 40});
+        }
+
+        Event.add(this.Medium, 'click', mclick);
+
+        var eclick = function() {
+            self.init({W: 30, H: 16, bombs: 99});
+        }
+
+        Event.add(this.Expert, 'click', eclick);
     },
 
     generateField: function() {
