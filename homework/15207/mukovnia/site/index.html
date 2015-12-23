@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Page Transitions with CSS3</title>
+		<link rel="shortcut icon" href="favicon.ico"> 
+		<link rel="stylesheet" href="css/style.css">
+		<link href='http://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet'>
+	</head>
+
+	<body>
+				
+		<div id="home" class="panel">
+			<div class="content">
+				<h2>Home</h2>
+				<p>There you can see some of my work results: it's a pretty simple little one-page website. Target of this project, I suppose, to show you basic knowledge of marking and web development. </p>
+				<p>So here you have it: some simple panels and blocks.</p>
+				<p>The project was made with holy power of google resources and Maksim Vakhrushev's help.</p>
+			</div>
+		</div>
+		
+		<div id="portfolio" class="panel">
+			<div class="content">
+				<h2>Portfolio</h2>
+				<p>Here you can see some my motolife's photos :)</p>
+				<ul id="works">
+					<li><a href=""><img src="images/portfolio_01.jpg" width="250"></a></li>
+					<li><a href=""><img src="images/portfolio_02.jpg" width="250"></a></li>
+					<li><a href=""><img src="images/portfolio_03.jpg" width="250"></a></li>
+				</ul>
+				<p class="footnote">Was a pity to sell.</p>
+			</div>
+		</div>
+		
+		<div id="about" class="panel">
+			<div class="content">
+				<h2>About</h2>
+				<ul id="works">
+				<p>Dunno what else I can add exept of english joke:</p>
+				<p>Dean, to the physics department. "Why do I always have to give you guys so much money, for laboratories and expensive equipment and stuff.</p>
+				<p>Why couldn't you be like the math department - all they need is money for pencils, paper and waste-paper baskets.</p>
+				<p>Or even better, like the philosophy department. All they need are pencils and paper."</p>
+				<p>Joke is pretty lousy, so i decided to put here a puppy photo:</p></ul>
+				<a href=""><img src="images/about_01.jpg" width="250"></a>
+			</div>
+		</div>
+
+		<div id="header">
+			<h1>Ivan Mukovnya</h1>
+			<ul id="navigation">
+				<li><a id="link-home" href="#home">Home</a></li>
+				<li><a id="link-portfolio" href="#portfolio">Portfolio</a></li>
+				<li><a id="link-about" href="#about">About Me</a></li>
+			</ul>
+		</div>
+		
+	<script>
+	// помощь друга
+	window.onload = function() {
+		document.getElementById("link-home").click();
+	}
+	</script>
+	</body>
+</html>
