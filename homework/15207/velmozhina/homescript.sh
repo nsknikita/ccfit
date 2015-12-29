@@ -1,9 +1,9 @@
  #!/bin/bash
 
-C=0
+C=7
 let "R = $RANDOM % 100"
 echo "Try to guess number"
-while [ "$C" -lt "7" ]
+while [ "$C" -gt "0" ]
 do
 	read X
 	if [ $X -eq $R ]
@@ -11,9 +11,10 @@ do
 		echo "YOU WON"
 		exit 0
 	else
+		echo You have $C attempts
 		if [ $X -lt $R ]
 		then
-			echo "Need higher number"
+			echo "Need higher number "
 		else
 			if [ $X -gt $R ]
 			then
@@ -21,6 +22,6 @@ do
 			fi
 		fi
 	fi
-let "C++";
+let "C--";
 done
 echo YOU LOSE
