@@ -1,0 +1,11 @@
+$fp = fopen('counter.txt', 'r');
+$i = fgets($fp, 10);
+fclose($fp);
+$i = $i + 1;
+$fp = fopen("counter.txt", "a");
+ftruncate($fp, 0);
+$test = fwrite($fp, $i);
+echo $i;
+fclose($fp);
+?>
+

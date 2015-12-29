@@ -1,0 +1,26 @@
+body{
+	background-color: #FAF0BE;
+	text-align: center;
+}
+#login_form{
+	position:absolute;
+	height: 100px;
+	width: 250px;
+	text-align:center;
+	background-color: #F0DC82;
+	border-radius: 15px;
+	border: 2px solid #CD7F32;
+	top:50%;
+	left:50%;
+	margin: -50px 0 0 -125px;
+}
+
+.login_input{
+	width: 200px;
+	margin-top: 10px;
+}
+
+#login_submit{
+	border-radius: 5px;
+	margin-top: 10px;
+}
