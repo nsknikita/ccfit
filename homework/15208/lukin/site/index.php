@@ -1,24 +1,45 @@
 <?php
-	file_put_contents("include/.count", $count = file_get_contents("include/.count") + 1);
-	echo "Вы $count посетитель<BR>";
-	$inip = $_SERVER['REMOTE_ADDR'];
-	$ip =  file("include/.iplist");
-	$cip = 0;
-	for ($i = 0; $i < count($ip); $i++)
+	session_start();
+	$phrase = "password";
+	if (isset($_SESSION["logged_user"]))
 	{
-		if (strcmp("$ip[$i]", "$inip\n") == 0) $cip = $i + 1;
+		if(!$_POST["exit"]){
+			header("Location: ./codeinclude/");
+			exit;
+		}
+		else{
+		unset ($_SESSION["logged_user"]);
+		}
 	}
-	if ($cip > 0)
-	{
-		echo "Кол-во уникальных посетителей: $i<BR>Вы были $cip уникальным посетителем<BR>";
-	}
-	else
-	{
-		$i++;
-		echo "Вы $i уникальный посетитель<BR>";
-		$ipfile = fopen("include/.iplist", 'a');
-		fwrite($ipfile, "$inip\n");
-		fclose($ipfile);
-	}
-	echo "Ваш ip: $inip<BR>";
+	else  if ($_POST["submit"]) {
+                $phrase = "wrong password";
+                $pass = explode("|", file("./txtinclude/logins")[$_POST["login"]]);
+                if(substr($pass[1], 0, -1) == $_POST["pass"]) {
+                        $_SESSION["logged_user"]=$pass[0];
+                        header("Location: ./codeinclude/");
+                	exit;
+        	}
+        }
 ?>
+<html>
+<head>
+	<title>�����������</title>
+	<link type="text/css" rel="stylesheet" href="./codeinclude/styles/firststyle.css" />
+</head>
+<body>
+	<form id="login_form" method="post">
+		<select class="login_input" name="login" size=1>
+<?php
+			$logins = file("./txtinclude/logins");
+			for ($i = 0; $i < (count($logins) - 1); $i++)
+			{
+				$login = explode("|",$logins[$i]);
+				print("\t\t\t<option value=$i>$login[0]</option>\n");
+			}
+		?>
+		</select>
+		<input class="login_input" type=password name=pass required placeholder="<?=$phrase?>" />
+		<input id="login_submit" type=submit name=submit value=�����>
+	</form>
+</body>
+</html>
