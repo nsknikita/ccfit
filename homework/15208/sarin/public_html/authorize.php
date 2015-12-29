@@ -1,21 +1,18 @@
 <?php
 session_start();
-
-if(isset($_SESSION[logged one])){
-header("Location: ./index.php");
+if(isset($_SESSION[logged one]))
+{
+header("Location: ./secretplace.php");
          exit;
      }
 if($_POST["submit"]) {
-$pass = explode(" | ", file("./logs") [$)POST["login"]]);
-if(substr($pass[1], 0 , -1) == $POST["pass"])
+if (S_POST"user_pass" == "123")
 {
-$_SESSION[logged_one"]=$pass[0];
-$_SESSION["a"]=0;
-header("location: ./index.php);
+header("location: ./secretplace.php);
 exit;
-} 
+}
 $_SESSION["a}=1;
-header("Location: ../index.php");
+header("Location: ./index.php");
 }
 else{
 echo "NOT THAT WAY";
