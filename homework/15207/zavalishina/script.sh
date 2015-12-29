@@ -7,6 +7,7 @@ count=7
 echo "Угадай число, которое я загадал. Введи число от 1 до 100."
 while [ $count -ne 0 ]
 do
+	echo "Осталось $count попыток."
 	read num
 	if [ "$num" -gt "$x" ]
 		then echo "Нет, мое число меньше."
