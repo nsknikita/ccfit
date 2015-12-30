@@ -1,0 +1,28 @@
+
+#!/bin/bash
+MAX=101
+NUM=0
+IFDONE=0
+RND=$(($RANDOM%$MAX))
+
+
+
+for try in 7 6 5 4 3 2 1
+do
+        echo "Осталось попыток $try; Введите число:"
+        read NUM
+        if ((NUM == RND))
+        then
+                echo "Вы угадали число"
+                exit 0
+        else
+                if ((NUM < RND))
+                then
+                        echo "Ваше число меньше искомого"
+                else
+                        echo "Ваше число больше искомого"
+                fi
+fi
+done
+echo "Вы не угадали число $RND"
+exit 0
